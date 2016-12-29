@@ -6,3 +6,12 @@ Rails.application.routes.draw do
   end
   resources :tags
 end
+
+Blogger::Application.routes.draw do
+  # ... other resources we have defined ...
+  resources :authors
+  
+  resources :author_sessions, only: [ :new, :create, :destroy ]
+	get 'login'  => 'author_sessions#new'
+   	get 'logout' => 'author_sessions#destroy'
+end
